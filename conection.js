@@ -1,6 +1,7 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
+const Post = require('./models/Post')
 const app = express()
 const port = 3000
 const host = 'localhost'
@@ -15,24 +16,20 @@ const host = 'localhost'
     app.use(bodyParser.urlencoded({extended: false}))
     app.use(bodyParser.json())
 
-    //Conexao com banco mysql
-    const Sequelize = require('sequelize')
-    const sequelize = new Sequelize('sistemanode', 'gustavo', 'CORVO_forte@123', {
-        host: 'localhost',
-        dialect: 'mysql'
-    })
-
-    // autenticação com o banco 
-    sequelize.authenticate().then(() => {console.log("Conexao com 'sistema node' concluida com sucesso!")}).catch((error) => {console.log(`Algo deu errado: ${error}`)})
 
     // Conexao de rotas
     app.get('/', (req,res) =>{
         res.render('index')
     })
     
+    app.get('/home', (req,res) =>{
+        res.render('home')
+    })
     app.post('/cad', (req, res) =>{
-        req.body.titulo
-        res.send("Texto: " + req.body.conteudo + " Titulo: " + req.body.titulo)
+        Post.create({
+            titulo: req.body.titulo,
+            conetudo: req.body.conteudo
+        }).then(() =>{ res.redirect('/home')}).catch((error) =>{"Algo deu errado " + error})
     })
 
 //levantando servidor 

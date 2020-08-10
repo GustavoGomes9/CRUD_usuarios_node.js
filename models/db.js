@@ -9,7 +9,11 @@ const Sequelize = require('sequelize')
         host: 'localhost',
         dialect: 'mysql'
     })
-    module.exports ={
+
+     // autenticação com o banco 
+     sequelize.authenticate().then(() => {console.log("Conexao com 'sistema node' concluida com sucesso!")}).catch((error) => {console.log(`Algo deu errado: ${error}`)})
+    
+     module.exports ={
         Sequelize: Sequelize,
         sequelize: sequelize
     }
