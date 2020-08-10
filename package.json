@@ -1,0 +1,25 @@
+{
+  "name": "nodecrud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "conection.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GustavoGomes9/CRUD_usuarios_node.js.git"
+  },
+  "author": "GustavoGomes9",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GustavoGomes9/CRUD_usuarios_node.js/issues"
+  },
+  "homepage": "https://github.com/GustavoGomes9/CRUD_usuarios_node.js#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "handlebars": "^4.7.6",
+    "mysql2": "^2.1.0",
+    "sequelize": "^6.3.4"
+  }
+}
