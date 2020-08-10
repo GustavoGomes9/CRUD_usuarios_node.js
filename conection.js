@@ -23,14 +23,19 @@ const host = 'localhost'
     })
     
     app.get('/home', (req,res) =>{
-        res.render('home')
+        Post.findAll({order: [['id', 'DESC']]}).then((posts) => {res.render('home', {values: posts})})    
     })
     app.post('/cad', (req, res) =>{
         Post.create({
             titulo: req.body.titulo,
-            conetudo: req.body.conteudo
+            conteudo: req.body.conteudo
         }).then(() =>{ res.redirect('/home')}).catch((error) =>{"Algo deu errado " + error})
     })
+
+    app.get('/deletar/:id', (req,res) =>{
+        Post.destroy({where: {'id': req.params.id}}).then(() => res.send("Deletado com sucesso!!")).catch((error) =>{res.send("Não foi possivel executar a ação: " + error)})
+    })
+    
 
 //levantando servidor 
 app.listen(port, host, () =>{
